@@ -32,12 +32,12 @@ resource "aws_iam_role_policy_attachment" "lambda_s3_attach" {
 }
 
 resource "aws_lambda_function" "fetch_api_data" {
-  function_name    = "hello-world"
+  function_name    = "hello-lambda"
   role            = aws_iam_role.lambda_role.arn
-  handler         = "com.example.LambdaHandler::handleRequest"
+  handler         = "main.java.com.example.HelloLambda::handleRequest"
   runtime         = "java21"
-  filename        = "../target/aws-playground-1.0-SNAPSHOT.jar"
-  source_code_hash = filebase64sha256("../target/aws-playground-1.0-SNAPSHOT.jar")
+  filename        = "../target/aws-playground-1.0.jar"
+  source_code_hash = filebase64sha256("../target/aws-playground-1.0.jar")
 
   environment {
     variables = {
